@@ -6,4 +6,14 @@ router.get('/', (req, res) => {
     res.send();
 })
 
+router.post('/', (req, res) =>{
+    console.log(req.body)
+    res.status(200).json(req.body);
+})
+
+router.get('/:id', (req, res) => {
+    console.log(req.params.id)
+    res.send(`ID: ${req.params.id}`)
+})
+
 module.exports = router;
