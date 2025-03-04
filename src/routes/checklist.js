@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router();
-
 const Checklist = require('../models/checklist');
 
 router.get('/', async (req, res) => {
@@ -35,14 +34,26 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-router.put('/:id', (req, res) =>{
-    console.log(req.body)
-    res.send(`PUT ID: ${req.params.id}`)
+router.put('/:id', async (req, res) =>{
+    let { name } = req.body;
 
-})
-router.delete('/:id', (req, res) =>{
-    console.log(req.body)
-    res.send(`DELETE ID: ${req.params.id}`)
-})
+  try {
+    let checklist = await Checklist.findByIdAndUpdate(req.params.id, { name }, {new: true});
+    res.status(200).json(checklist);
+  } catch (error) {
+    res.status(422).json({ message: 'Erro ao atualizar o checklist', error });
+  }
+});
+
+router.delete('/:id', async (req, res) =>{
+    try {
+        let checklist = await Checklist.findByIdAndDelete(req.params.id);
+        res.status(200).json(checklist)
+      }catch(error){
+        res.status(422).json(req.body)
+      }
+      
+    }
+)      
 
 module.exports = router;
