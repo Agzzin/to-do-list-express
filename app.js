@@ -15,7 +15,7 @@ App.use(express.urlencoded({ extended: true }));
 App.use(methodOverride('_method',{methods: ['POST', 'GET']}));
 
 
-App.use(express.static(path.join(__dirname, 'public')))
+App.use('/public/javascripts', express.static(path.join(__dirname, 'public/javascripts')));
 
 
 App.set('views', path.join(__dirname, 'src/views'))
