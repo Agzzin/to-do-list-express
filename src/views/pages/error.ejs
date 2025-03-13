@@ -1,13 +1,19 @@
-<%- include('../layouts/header') %>
+<%- include('../layouts/header', { title: "Erro!" }) %>
 
 <%- include('../layouts/menu') %>
 
-<div class="error-page">
-    <h1>Erro</h1>
-    <p>Ocorreu um erro inesperado.</p>
-    <p>Código do Erro: <%= error.code %></p>
-    <p>Mensagem do Erro: <%= error.message %></p>
-    <button onclick="window.history.back()">Voltar</button>
-</div>
+<section class="section hero is-danger is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        Ops! Algo deu errado =(
+      </h1>
+      <h2 class="subtitle">
+        Erros..
+      </h2>
+      <a href="/checklists" class="button is-light is-medium">Ir para Lista de Tarefas</a>
+    </div>
+  </div>
+</section>
 
 <%- include('../layouts/footer') %>
