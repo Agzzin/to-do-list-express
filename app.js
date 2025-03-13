@@ -25,6 +25,7 @@ App.set('view engine', 'ejs')
 App.use('/', rootRouter)
 App.use('/checklists', checklistRouter)
 App.use('/checklists', taskRouter.checklistDepedent)
+App.use('/tasks', taskRouter.simple);
 App.use(express.json())
 
 App.listen(3000, () => {
